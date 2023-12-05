@@ -13,7 +13,7 @@ import org.junit.Assume;
 import org.junit.runner.RunWith;
 
 @RunWith(JQF.class)
-public class JsonTest2 {
+public class gson_test {
 
     private Gson gson = new Gson();
 
