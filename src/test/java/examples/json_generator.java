@@ -11,8 +11,8 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class JsonGenerator extends Generator<String> {
-    public JsonGenerator() {
+public class json_generator extends Generator<String> {
+    public json_generator() {
         super(String.class);
     }
 
