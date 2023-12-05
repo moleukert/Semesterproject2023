@@ -12,13 +12,6 @@
     </properties>
 
     <dependencies>
-        <!-- Google Closure: we want to test this library -->
-        <dependency>
-            <groupId>com.google.javascript</groupId>
-            <artifactId>closure-compiler</artifactId>
-            <version>v20180204</version>
-            <scope>test</scope>
-        </dependency>
 
         <!-- JQF: test dependency for @Fuzz annotation -->
         <dependency>
