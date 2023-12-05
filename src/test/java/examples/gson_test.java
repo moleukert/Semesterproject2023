@@ -6,7 +6,6 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.pholser.junit.quickcheck.From;
 import examples.json_generator;
-import examples.AsciiStringGenerator;
 import edu.berkeley.cs.jqf.fuzz.JQF;
 import edu.berkeley.cs.jqf.fuzz.Fuzz;
 import org.junit.Assume;
