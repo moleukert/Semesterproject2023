@@ -28,15 +28,16 @@ public class JsonGenerator extends Generator<String> {
     };
 
     private static final String[] escapevariants = {
-            " ", "\\", "/", "b", "f", "n", "r", "t", "u"
+            "\"", "\\", "/", "b", "f", "n", "r", "t", "u"
     };
 
     @Override
     public String generate(SourceOfRandomness random, GenerationStatus status) {
         this.status = status;
         this.currentDepth = 0;
-        return generateElement(random).toString();
-
+        String input = generateElement(random).toString();
+        // System.out.println("Input: " + input);
+        return input;
     }
 
     private String generateElement(SourceOfRandomness random) {
@@ -309,7 +310,7 @@ public class JsonGenerator extends Generator<String> {
 
         switch (choice) {
             case 0:
-                return " ";
+                return "";
             case 1:
                 return "+";
             case 2:
