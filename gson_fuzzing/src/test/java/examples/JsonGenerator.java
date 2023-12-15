@@ -37,7 +37,25 @@ public class JsonGenerator extends Generator<String> {
         this.currentDepth = 0;
         String input = generateElement(random).toString();
         // System.out.println("Input: " + input);
+        double choice = random.nextDouble(0.0, 1.0);
+        if (choice <= 0.1) input = mutateStringRandomly(input, random);
         return input;
+    }
+
+    private static String mutateStringRandomly(String str, SourceOfRandomness random) {
+ 
+        char[] chars = str.toCharArray();
+
+        // Select a random position in the string
+        int randomPosition = random.nextInt(chars.length);
+
+        // Generate a random character
+        char randomChar = (char) (32 + random.nextInt(95)); // For simplicity, generating a lowercase letter
+
+        // Replace the character at the random position
+        chars[randomPosition] = randomChar;
+
+        return new String(chars);
     }
 
     private String generateElement(SourceOfRandomness random) {
