@@ -50,7 +50,7 @@ public class JsonGenerator extends Generator<String> {
         int randomPosition = random.nextInt(chars.length);
 
         // Generate a random character
-        char randomChar = (char) (32 + random.nextInt(95)); // For simplicity, generating a lowercase letter
+        char randomChar = (char) (32 + random.nextInt(95));
 
         // Replace the character at the random position
         chars[randomPosition] = randomChar;
