@@ -42,9 +42,14 @@ public class JsonGenerator extends Generator<String> {
         this.currentDepth = 0;
         this.currentwsDepth = 0;
         String input = generateElement(random).toString();
-        double zufall = random.nextDouble(0.0, 1.0);
-        if (zufall <= 0.2) {
-            input = mutateStringRandomly(input, random);
+        double zufall;
+        while (true) {
+            zufall = random.nextDouble(0.0, 1.0);
+            if (zufall <= 0.2) {
+                input = mutateStringRandomly(input, random);
+            } else {
+                break;
+            }
         }
         // System.out.println("Input: " + input);
         return input;
