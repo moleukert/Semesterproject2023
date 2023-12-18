@@ -25,11 +25,8 @@ public class JsonGenerator extends Generator<String> {
     private static final int MIN_CHAR_DEPTH = 10;
     private static final int MIN_ELEMENTS_DEPTH = 10;
 
-
     private int currentDepth;
     private int currentwsDepth;
-
-
 
     private static final String[] whitespacevariants = {
             " ", "\n", "\r", "\t"
@@ -45,8 +42,20 @@ public class JsonGenerator extends Generator<String> {
         this.currentDepth = 0;
         this.currentwsDepth = 0;
         String input = generateElement(random).toString();
-        //System.out.println("Input: " + input);
+        double zufall = random.nextDouble(0.0, 1.0);
+        if (zufall <= 0.2) {
+            input = mutateStringRandomly(input, random);
+        }
+        // System.out.println("Input: " + input);
         return input;
+    }
+
+    private String mutateStringRandomly(String input, SourceOfRandomness random) {
+        char[] chars = input.toCharArray();
+        int rndpos = random.nextInt(chars.length);
+        char rndchar = (char) (32 + random.nextInt(95));
+        chars[rndpos] = rndchar;
+        return new String(chars);
     }
 
     private String generateElement(SourceOfRandomness random) {
@@ -122,8 +131,7 @@ public class JsonGenerator extends Generator<String> {
         String whitespace;
         if (currentwsDepth >= MAX_WS_DEPTH || random.nextBoolean()) {
             whitespace = "";
-        }
-        else {
+        } else {
             currentwsDepth++;
             whitespace = random.choose(whitespacevariants) + generateWhitespace(random);
             currentwsDepth--;
@@ -133,10 +141,10 @@ public class JsonGenerator extends Generator<String> {
 
     private String generateMembers(SourceOfRandomness random) {
         String member;
-        if (  (currentDepth >= MAX_RECURSION_DEPTH || random.nextBoolean()) && currentDepth >= MIN_MEMBERS_DEPTH ) {
+        if ((currentDepth >= MAX_RECURSION_DEPTH || random.nextBoolean()) && currentDepth >= MIN_MEMBERS_DEPTH) {
             member = generateMember(random);
         }
-        
+
         else {
             currentDepth++;
             member = generateMember(random) + "," + generateMembers(random);
@@ -157,8 +165,7 @@ public class JsonGenerator extends Generator<String> {
         String elements;
         if ((currentDepth >= MAX_RECURSION_DEPTH || random.nextBoolean()) && currentDepth >= MIN_ELEMENTS_DEPTH) {
             elements = generateElement(random);
-        }
-        else {
+        } else {
             currentDepth++;
             elements = generateElement(random) + "," + generateElements(random);
             currentDepth--;
@@ -168,10 +175,9 @@ public class JsonGenerator extends Generator<String> {
 
     private String generateCharacters(SourceOfRandomness random) {
         String character;
-        if ((currentDepth >= MAX_RECURSION_DEPTH ||random.nextBoolean()) && currentDepth >= MIN_CHAR_DEPTH ) {
+        if ((currentDepth >= MAX_RECURSION_DEPTH || random.nextBoolean()) && currentDepth >= MIN_CHAR_DEPTH) {
             character = "";
-        }
-        else {
+        } else {
             currentDepth++;
             character = generateCharacter(random) + generateCharacters(random);
             currentDepth--;
