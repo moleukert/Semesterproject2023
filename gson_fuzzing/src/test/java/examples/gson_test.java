@@ -28,12 +28,14 @@ public class gson_test {
     public void fuzzJSONParser(@From(JsonGenerator.class) String input) {
         // test standard deserialization with gson
         try {
-            gson.fromJson(input, Object.class);
+            Object object = gson.fromJson(input, Object.class);
+            gson.toJson(object);
         } catch (JsonSyntaxException e) {
             Assume.assumeNoException(e);
         } catch (JsonIOException e) {
             Assume.assumeNoException(e);
         }
+
         // test standard parsing to Tree with JsonParser
         try {
             parser.parseString(input);

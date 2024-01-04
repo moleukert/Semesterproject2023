@@ -1,0 +1,6 @@
+{
+    "java.project.sourcePaths": [
+        ".",
+        "gson_fuzzing/src/test/java/examples"
+    ]
+}
