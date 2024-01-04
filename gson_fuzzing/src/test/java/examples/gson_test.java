@@ -26,23 +26,24 @@ public class gson_test {
 
     @Fuzz
     public void fuzzJSONParser(@From(JsonGenerator.class) String input) {
-        // test standard deserialization with gson
+        // test standard deserialization with gson (and back)
         try {
-            gson.fromJson(input, Object.class);
+            gson.toJson(gson.fromJson(input, Object.class));
         } catch (JsonSyntaxException e) {
             Assume.assumeNoException(e);
         } catch (JsonIOException e) {
             Assume.assumeNoException(e);
         }
+
         // test standard parsing to Tree with JsonParser
         try {
             parser.parseString(input);
         } catch (JsonParseException e) {
             Assume.assumeNoException(e);
         }
-        // test deserialization with custom gson
+        // test deserialization with custom gson (and back)
         try {
-            custom.fromJson(input, Object.class);
+            gson.toJson(custom.fromJson(input, Object.class));
         } catch (JsonSyntaxException e) {
             Assume.assumeNoException(e);
         } catch (JsonIOException e) {
