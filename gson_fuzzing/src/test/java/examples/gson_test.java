@@ -18,7 +18,6 @@ import org.junit.runner.RunWith;
 public class gson_test {
 
     private Gson gson = new Gson();
-    private JsonParser parser = new JsonParser();
     private Gson custom = new GsonBuilder()
             .setLenient()
             .setObjectToNumberStrategy(ToNumberPolicy.LONG_OR_DOUBLE)
@@ -38,7 +37,7 @@ public class gson_test {
 
         // test standard parsing to Tree with JsonParser
         try {
-            parser.parseString(input);
+            JsonParser.parseString(input);
         } catch (JsonParseException e) {
             Assume.assumeNoException(e);
         }
